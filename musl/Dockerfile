@@ -1,7 +1,7 @@
 FROM ubuntu:latest
 
 RUN apt-get update
-RUN apt-get install -y curl g++ make cmake xz-utils
+RUN apt-get install -y curl g++ make cmake xz-utils git
 
 # Support building MUSL nightlies
 WORKDIR /build

@@ -1,0 +1,16 @@
+FROM musl
+
+RUN apt-get install -y python
+
+WORKDIR /build
+RUN git clone --recursive https://github.com/rust-lang/rust
+WORKDIR /build/rust
+RUN ./configure --musl-root=/musl --prefix=/rust \
+                --target=x86_64-unknown-linux-musl
+RUN make -j10
+RUN make install
+
+RUN rm -rf /build
+WORKDIR /home/rustbuild
+ENV PATH=/rust/bin:$PATH
+ENV LD_LIBRARY_PATH=/rust/lib
