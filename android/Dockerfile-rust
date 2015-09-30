@@ -1,0 +1,17 @@
+FROM android
+
+RUN apt-get install -y python git make g++
+
+WORKDIR /build
+RUN git clone --recursive https://github.com/rust-lang/rust
+WORKDIR /build/rust
+RUN ./configure --prefix=/rust \
+                --target=arm-linux-androideabi \
+                --arm-linux-androideabi-ndk=/build/android-ndk
+RUN make -j10
+RUN make install
+
+RUN rm -rf /build
+WORKDIR /home/rustbuild
+ENV PATH=/rust/bin:$PATH
+ENV LD_LIBRARY_PATH=/rust/lib
