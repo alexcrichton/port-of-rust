@@ -1,4 +1,4 @@
-FROM android
+FROM base-rust
 
 RUN apt-get install -y python git make g++
 
@@ -11,7 +11,17 @@ RUN ./configure --prefix=/rust \
 RUN make -j10
 RUN make install
 
-RUN rm -rf /build
-WORKDIR /home/rustbuild
 ENV PATH=/rust/bin:$PATH
 ENV LD_LIBRARY_PATH=/rust/lib
+
+RUN apt-get install -y libssl-dev
+
+WORKDIR /build
+RUN git clone --recursive https://github.com/rust-lang/cargo
+WORKDIR /build/cargo
+RUN ./configure --prefix=/rust --enable-optimize
+RUN make
+RUN make install
+
+RUN rm -rf /build
+WORKDIR /home/rustbuild
