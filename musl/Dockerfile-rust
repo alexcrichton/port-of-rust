@@ -10,11 +10,16 @@ RUN ./configure --musl-root=/musl --prefix=/rust \
 RUN make -j10
 RUN make install
 
-RUN curl https://static.rust-lang.org/cargo-dist/cargo-nightly-x86_64-unknown-linux-gnu.tar.gz | \
-      tar xzf - -C /rust --strip-components=2 \
-        cargo-nightly-x86_64-unknown-linux-gnu/cargo/bin
+ENV PATH=/rust/bin:$PATH
+ENV LD_LIBRARY_PATH=/rust/lib
+
+RUN apt-get install -y libssl-dev
+WORKDIR /build
+RUN git clone --recursive https://github.com/rust-lang/cargo
+WORKDIR /build/cargo
+RUN ./configure --prefix=/rust --enable-optimize
+RUN make
+RUN make install
 
 RUN rm -rf /build
 WORKDIR /home/rustbuild
-ENV PATH=/rust/bin:$PATH
-ENV LD_LIBRARY_PATH=/rust/lib
