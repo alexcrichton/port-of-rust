@@ -14,7 +14,7 @@ RUN make install
 ENV PATH=/rust/bin:$PATH
 ENV LD_LIBRARY_PATH=/rust/lib
 
-RUN apt-get install -y libssl-dev
+RUN apt-get install -y libssl-dev cmake
 
 WORKDIR /build
 RUN git clone --recursive https://github.com/rust-lang/cargo
