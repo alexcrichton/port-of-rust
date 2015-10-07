@@ -45,13 +45,13 @@ RUN bash android-ndk-r9c/build/tools/make-standalone-toolchain.sh \
 RUN curl -O http://dl.google.com/android/android-sdk_r24.3.4-linux.tgz
 RUN tar xf android-sdk_r24.3.4-linux.tgz
 COPY android-accept-licenses.sh /build/android-accept-licenses.sh
+RUN mv android-sdk-linux /android/sdk
 RUN ["./android-accept-licenses.sh", \
      "android - update sdk -a --no-ui --filter platform-tools,android-18,sys-img-armeabi-v7a-android-18"]
 RUN echo "no" | android create avd \
                 --name test \
                 --target android-18 \
                 --abi armeabi-v7a
-RUN mv android-sdk-linux /android/sdk
 
 RUN rm -rf /build
 WORKDIR /home/rustbuild
