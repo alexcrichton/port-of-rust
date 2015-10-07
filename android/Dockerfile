@@ -4,13 +4,14 @@
 
 FROM ubuntu:latest
 
-RUN mkdir /build
 WORKDIR /build
 
 # Setup PATH to allow running android tools.
-ENV PATH=$PATH:/build/android-ndk/bin
-ENV PATH=$PATH:/build/android-sdk-linux/tools
-ENV PATH=$PATH:/build/android-sdk-linux/platform-tools
+ENV PATH=$PATH:/android/ndk-arm/bin
+ENV PATH=$PATH:/android/sdk/tools
+ENV PATH=$PATH:/android/sdk/platform-tools
+ENV PATH=$PATH:/rust/bin
+ENV LD_LIBRARY_PATH=/rust/lib
 
 # So it looks like the default sdk gives us a 32-bit executable, but then it
 # whines about it. Not sure how to download a 64-bit executable in the sdk so
@@ -31,11 +32,9 @@ RUN tar xf android-ndk-r9c-linux-x86_64.tar.bz2
 RUN bash android-ndk-r9c/build/tools/make-standalone-toolchain.sh \
         --platform=android-18 \
         --toolchain=arm-linux-androideabi-4.8 \
-        --install-dir=/build/android-ndk \
+        --install-dir=/android/ndk-arm \
         --ndk-dir=/build/android-ndk-r9c \
         --arch=arm
-RUN rm -rf android-ndk-r9c-linux-x86_64.tar.bz2
-RUN rm -rf android-ndk-r9c
 
 # Prep the SDK and emulator
 #
@@ -52,8 +51,7 @@ RUN echo "no" | android create avd \
                 --name test \
                 --target android-18 \
                 --abi armeabi-v7a
-RUN rm -rf android-sdk_r24.3.4-linux.tgz
-RUN rm android-accept-licenses.sh
+RUN mv android-sdk-linux /android/sdk
 
-RUN mkdir /clone
-WORKDIR /clone
+RUN rm -rf /build
+WORKDIR /home/rustbuild

@@ -22,8 +22,9 @@ RUN cmake ../libunwind-3.7.0.src -DLLVM_PATH=/build/llvm-3.7.0.src \
 RUN make -j10
 RUN cp lib/libunwind.a /musl/lib
 
-# Clean up after ourselves, make sure that `cc` is a thing, and then make the
-# default working directory a "home-ish" directory
 RUN rm -rf /build
 WORKDIR /home/rustbuild
+
 ENV PATH=/musl/bin:$PATH
+ENV PATH=/rust/bin:$PATH
+ENV LD_LIBRARY_PATH=/rust/lib

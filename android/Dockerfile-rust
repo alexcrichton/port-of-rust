@@ -7,12 +7,9 @@ RUN git clone --recursive https://github.com/rust-lang/rust
 WORKDIR /build/rust
 RUN ./configure --prefix=/rust \
                 --target=arm-linux-androideabi \
-                --arm-linux-androideabi-ndk=/build/android-ndk
+                --arm-linux-androideabi-ndk=/android/ndk-arm
 RUN make -j10
 RUN make install
-
-ENV PATH=/rust/bin:$PATH
-ENV LD_LIBRARY_PATH=/rust/lib
 
 RUN apt-get install -y libssl-dev cmake
 

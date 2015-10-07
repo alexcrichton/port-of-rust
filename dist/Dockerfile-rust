@@ -7,9 +7,6 @@ RUN ./configure --prefix=/rust
 RUN make -j10
 RUN make install
 
-ENV PATH=/rust/bin:$PATH
-ENV LD_LIBRARY_PATH=/rust/lib:$LD_LIBRARY_PATH
-
 WORKDIR /build
 RUN git clone --recursive https://github.com/rust-lang/cargo
 WORKDIR /build/cargo
