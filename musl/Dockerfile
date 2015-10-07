@@ -22,9 +22,9 @@ RUN cmake ../libunwind-3.7.0.src -DLLVM_PATH=/build/llvm-3.7.0.src \
 RUN make -j10
 RUN cp lib/libunwind.a /musl/lib
 
-RUN rm -rf /build
-WORKDIR /home/rustbuild
-
 ENV PATH=/musl/bin:$PATH
 ENV PATH=/rust/bin:$PATH
 ENV LD_LIBRARY_PATH=/rust/lib
+
+RUN rm -rf /build
+WORKDIR /home/rustbuild

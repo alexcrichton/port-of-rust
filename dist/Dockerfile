@@ -174,13 +174,13 @@ RUN make -j10
 RUN make install
 RUN yum erase -y texinfo ncurses-devel
 
+# prepare for a rust installation being mounted/installed at /rust
+ENV PATH=/rust/bin:$PATH
+ENV LD_LIBRARY_PATH=/rust/lib:$LD_LIBRARY_PATH
+
 # Clean up after ourselves, make sure that `cc` is a thing, and then make the
 # default working directory a "home-ish" directory
 RUN rm -rf /build
 RUN ln -s /rustroot/bin/gcc /rustroot/bin/cc
 WORKDIR /home/rustbuild
 CMD /bin/bash
-
-# prepare for a rust installation being mounted/installed at /rust
-ENV PATH=/rust/bin:$PATH
-ENV LD_LIBRARY_PATH=/rust/lib:$LD_LIBRARY_PATH
