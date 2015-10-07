@@ -179,6 +179,7 @@ RUN yum erase -y texinfo ncurses-devel
 RUN rm -rf /build
 RUN ln -s /rustroot/bin/gcc /rustroot/bin/cc
 WORKDIR /home/rustbuild
+CMD /bin/bash
 
 # prepare for a rust installation being mounted/installed at /rust
 ENV PATH=/rust/bin:$PATH
