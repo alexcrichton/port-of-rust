@@ -8,15 +8,11 @@ WORKDIR /build
 
 # Setup PATH to allow running android tools.
 ENV PATH=$PATH:/android/ndk-arm/bin
+ENV PATH=$PATH:/android/ndk-aarch64/bin
 ENV PATH=$PATH:/android/sdk/tools
 ENV PATH=$PATH:/android/sdk/platform-tools
 ENV PATH=$PATH:/rust/bin
 ENV LD_LIBRARY_PATH=/rust/lib
-
-# So it looks like the default sdk gives us a 32-bit executable, but then it
-# whines about it. Not sure how to download a 64-bit executable in the sdk so
-# just let the 32-bit thing run for now.
-ENV ANDROID_EMULATOR_FORCE_32BIT=true
 
 # Install necessary packages:
 RUN dpkg --add-architecture i386
@@ -27,14 +23,21 @@ RUN apt-get -y install expect curl libncurses5:i386 libstdc++6:i386 zlib1g:i386 
 # Prep the Android NDK
 #
 # See https://github.com/servo/servo/wiki/Building-for-Android
-RUN curl -O http://dl.google.com/android/ndk/android-ndk-r9c-linux-x86_64.tar.bz2
-RUN tar xf android-ndk-r9c-linux-x86_64.tar.bz2
-RUN bash android-ndk-r9c/build/tools/make-standalone-toolchain.sh \
+RUN curl -O http://dl.google.com/android/ndk/android-ndk-r10e-linux-x86_64.bin
+RUN chmod +x android-ndk-r10e-linux-x86_64.bin
+RUN ./android-ndk-r10e-linux-x86_64.bin
+RUN bash android-ndk-r10e/build/tools/make-standalone-toolchain.sh \
         --platform=android-18 \
         --toolchain=arm-linux-androideabi-4.8 \
         --install-dir=/android/ndk-arm \
-        --ndk-dir=/build/android-ndk-r9c \
+        --ndk-dir=/build/android-ndk-r10e \
         --arch=arm
+RUN bash android-ndk-r10e/build/tools/make-standalone-toolchain.sh \
+        --platform=android-21 \
+        --toolchain=aarch64-linux-android-4.9 \
+        --install-dir=/android/ndk-aarch64 \
+        --ndk-dir=/build/android-ndk-r10e \
+        --arch=arm64
 
 # Prep the SDK and emulator
 #
