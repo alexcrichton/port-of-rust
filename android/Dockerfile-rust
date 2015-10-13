@@ -6,8 +6,9 @@ WORKDIR /build
 RUN git clone --recursive https://github.com/rust-lang/rust
 WORKDIR /build/rust
 RUN ./configure --prefix=/rust \
-                --target=arm-linux-androideabi \
-                --arm-linux-androideabi-ndk=/android/ndk-arm
+                --target=arm-linux-androideabi,aarch64-linux-android \
+                --arm-linux-androideabi-ndk=/android/ndk-arm \
+                --aarch64-linux-android-ndk=/android/ndk-aarch64
 RUN make -j10
 RUN make install
 
