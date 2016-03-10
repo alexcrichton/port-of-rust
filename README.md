@@ -32,3 +32,11 @@ are:
 
 If those are all taken care of, however, then the cross compilation experience
 should be relatively smooth!
+
+# License
+
+These docker images are primarily distributed under the terms of both the MIT
+license and the Apache License (Version 2.0), with portions covered by various
+BSD-like licenses.
+
+See LICENSE-APACHE, and LICENSE-MIT for details.
