@@ -13,6 +13,18 @@ minimum for compiling Rust code on the target platform, including:
 The tests for this repository run a smoke "build a cargo project" for each
 platform, so at least "Hello, World!" should be guaranteed to work!
 
+
+### Building an image
+
+First, figure out the target you'd like. Let's say that's
+`arm-linux-androideabi`. Next, build the docker container like so:
+
+```
+docker build -f arm-linux-androideabi/Dockerfile .
+```
+
+And then you're ready to go!
+
 ### Platform Support
 
 Most of the platforms here are currently untested, which means that your mileage
