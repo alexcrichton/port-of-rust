@@ -10,6 +10,6 @@ RUN git clone --recursive https://github.com/rumpkernel/rumprun && \
     cd / && \
     rm -rf rumprun
 
-COPY support/install-rust.sh /tmp
+COPY support/install-rust.sh /tmp/
 RUN sh /tmp/install-rust.sh x86_64-rumprun-netbsd
 COPY x86_64-rumprun-netbsd/cargo-config /.cargo/config

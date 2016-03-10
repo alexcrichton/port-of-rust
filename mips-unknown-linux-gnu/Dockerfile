@@ -9,6 +9,6 @@ RUN apt-get -y install gcc-5-mips-linux-gnu libc6-dev-mips-cross
 RUN ln -nsf /usr/bin/mips-linux-gnu-gcc-5 \
             /usr/bin/mips-linux-gnu-gcc
 
-COPY support/install-rust.sh /tmp
+COPY support/install-rust.sh /tmp/
 RUN sh /tmp/install-rust.sh mips-unknown-linux-gnu
 COPY mips-unknown-linux-gnu/cargo-config /.cargo/config
