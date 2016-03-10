@@ -1,6 +1,6 @@
 curl https://static.rust-lang.org/rustup.sh | \
   sh -s -- \
-  --with-target=arm-linux-androideabi \
+  --with-target=$1 \
   --yes \
   --disable-sudo \
   --channel=nightly

@@ -3,12 +3,9 @@ FROM ubuntu:15.10
 WORKDIR /build
 
 RUN apt-get -y update
-RUN apt-get -y install curl file
+RUN apt-get -y install curl file gcc
 
 ENV PATH=$PATH:/android/ndk-arm/bin
-ENV ANDROID_EMULATOR_FORCE_32BIT=true
-
-RUN mkdir /android
 
 WORKDIR /android
 COPY support/android-install-ndk.sh /android/
