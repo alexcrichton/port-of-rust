@@ -1,5 +1,7 @@
 # Port of Rust
 
+[![Build Status](https://travis-ci.org/alexcrichton/port-of-rust.svg?branch=master)](https://travis-ci.org/alexcrichton/port-of-rust)
+
 This repo contains a collection of docker containers intended for compiling Rust
 code for various platforms. Each container contains what should be the bare
 minimum for compiling Rust code on the target platform, including:
