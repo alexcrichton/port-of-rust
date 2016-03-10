@@ -1,0 +1,24 @@
+language: rust
+sudo: required
+dist: trusty
+services:
+  - docker
+script:
+  - ./test.sh $TARGET
+env:
+  matrix:
+    - TARGET=aarch64-unknown-linux-gnu
+    - TARGET=arm-linux-androideabi
+    - TARGET=arm-unknown-linux-gnueabi
+    - TARGET=arm-unknown-linux-gnueabihf
+    - TARGET=armv7-unknown-linux-gnueabihf
+    - TARGET=i686-unknown-linux-gnu
+    - TARGET=mips-unknown-linux-gnu
+    - TARGET=mipsel-unknown-linux-gnu
+    - TARGET=powerpc-unknown-linux-gnu
+    - TARGET=powerpc64-unknown-linux-gnu
+    - TARGET=powerpc64le-unknown-linux-gnu
+    - TARGET=x86_64-pc-windows-gnu
+    - TARGET=x86_64-rumprun-netbsd
+    - TARGET=x86_64-unknown-linux-gnu
+    - TARGET=x86_64-unknown-linux-musl

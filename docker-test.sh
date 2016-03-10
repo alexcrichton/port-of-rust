@@ -44,4 +44,9 @@ fn main() {
 EOF
 
 (cd testbin && cargo build)
-rm testbin/target/$TARGET/debug/testbin
+file=testbin/target/$TARGET/debug/testbin
+if [ -f $file.exe ]; then
+  rm $file.exe
+else
+  rm $file
+fi
