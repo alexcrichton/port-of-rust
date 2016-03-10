@@ -1,0 +1,5 @@
+[build]
+target = "powerpc64le-unknown-linux-gnu"
+
+[target.powerpc64le-unknown-linux-gnu]
+linker = "powerpc64le-linux-gnu-gcc"

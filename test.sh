@@ -15,6 +15,9 @@ runtest() {
 }
 
 if [ -z "$1" ]; then
+  echo "need a target to test"
+  exit 1
+elif [ "$1" = "all" ]; then
   for d in */Dockerfile; do
     target=$(dirname $d)
     runtest $target

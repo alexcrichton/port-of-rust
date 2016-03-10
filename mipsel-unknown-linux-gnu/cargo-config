@@ -1,0 +1,5 @@
+[build]
+target = "mipsel-unknown-linux-gnu"
+
+[target.mipsel-unknown-linux-gnu]
+linker = "mipsel-linux-gnu-gcc"

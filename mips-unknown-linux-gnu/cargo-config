@@ -1,0 +1,5 @@
+[build]
+target = "mips-unknown-linux-gnu"
+
+[target.mips-unknown-linux-gnu]
+linker = "mips-linux-gnu-gcc"

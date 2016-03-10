@@ -1,23 +1,18 @@
 FROM ubuntu:15.10
 
-WORKDIR /build
-
 RUN apt-get -y update
 RUN apt-get -y install curl file gcc
 
 ENV PATH=$PATH:/android/ndk-arm/bin
 
-WORKDIR /android
-COPY support/android-install-ndk.sh /android/
-RUN sh android-install-ndk.sh \
-      --platform=android-18 \
-      --toolchain=arm-linux-androideabi-4.8 \
+COPY support/android-install-ndk.sh /tmp/
+RUN sh /tmp/android-install-ndk.sh \
+      --platform=android-21 \
+      --toolchain=arm-linux-androideabi-clang3.6 \
       --install-dir=/android/ndk-arm \
-      --ndk-dir=/android/android-ndk-r10e \
+      --ndk-dir=android-ndk-r10e \
       --arch=arm
 
-COPY support/install-rust.sh /android/
-RUN sh install-rust.sh arm-linux-androideabi
+COPY support/install-rust.sh /tmp/
+RUN sh /tmp/install-rust.sh arm-linux-androideabi
 COPY arm-linux-androideabi/cargo-config /.cargo/config
-
-WORKDIR /
