@@ -10,6 +10,7 @@ curl ftp://ftp.freebsd.org/pub/FreeBSD/releases/amd64/10.2-RELEASE/base.txz | \
 
 cp -r /tmp/freebsd/usr/include .
 cp /tmp/freebsd/usr/lib/crt1.o lib
+cp /tmp/freebsd/usr/lib/Scrt1.o lib
 cp /tmp/freebsd/usr/lib/crti.o lib
 cp /tmp/freebsd/usr/lib/crtn.o lib
 cp /tmp/freebsd/usr/lib/libc.a lib
