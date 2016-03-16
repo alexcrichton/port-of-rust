@@ -13,6 +13,10 @@ mkdir gcc-build
 cd gcc-$VERSION
 ./contrib/download_prerequisites
 
+for patch in $PATCHES; do
+  curl $patch | patch -Np0
+done
+
 cd ../gcc-build
 ../gcc-$VERSION/configure "$@"
 make -j10
