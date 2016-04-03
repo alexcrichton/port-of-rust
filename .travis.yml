@@ -22,6 +22,8 @@ env:
     - TARGET=x86_64-rumprun-netbsd
     - TARGET=x86_64-unknown-linux-gnu
     - TARGET=x86_64-unknown-linux-musl
+    - TARGET=x86_64-unknown-freebsd
+    - TARGET=x86_64-unknown-netbsd
 notifications:
   email:
     on_success: never
