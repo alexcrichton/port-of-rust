@@ -23,6 +23,7 @@ cp /tmp/netbsd/usr/lib/libc.a lib
 cp /tmp/netbsd/usr/lib/libc_p.a lib
 cp /tmp/netbsd/usr/lib/libc_pic.a lib
 cp /tmp/netbsd/lib/libc.so.12.193.1 lib
+cp /tmp/netbsd/lib/libutil.so.7.21 lib
 cp /tmp/netbsd/usr/lib/libm.a lib
 cp /tmp/netbsd/usr/lib/libm_p.a lib
 cp /tmp/netbsd/usr/lib/libm_pic.a lib
@@ -37,6 +38,8 @@ ln -s libc.so.12.193.1 lib/libc.so
 ln -s libc.so.12.193.1 lib/libc.so.12
 ln -s libm.so.0.11 lib/libm.so
 ln -s libm.so.0.11 lib/libm.so.0
+ln -s libutil.so.7.21 lib/libutil.so
+ln -s libutil.so.7.21 lib/libutil.so.7
 ln -s libpthread.so.1.2 lib/libpthread.so
 ln -s libpthread.so.1.2 lib/libpthread.so.1
 ln -s librt.so.1.1 lib/librt.so

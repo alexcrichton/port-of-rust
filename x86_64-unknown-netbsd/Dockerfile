@@ -1,4 +1,4 @@
-FROM alexcrichton/port-prebuilt-netbsd:2016-03-21
+FROM alexcrichton/port-prebuilt-netbsd:2016-04-07
 
 ENV CC_x86_64_unknown_netbsd=x86_64-unknown-netbsd-gcc \
     CXX_x86_64_unknown_netbsd=x86_64-unknown-netbsd-g++ \

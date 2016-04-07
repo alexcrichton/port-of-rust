@@ -1,4 +1,4 @@
-FROM alexcrichton/port-prebuilt-freebsd:2016-03-21
+FROM alexcrichton/port-prebuilt-freebsd:2016-04-07
 
 ENV CC_x86_64_unknown_freebsd=x86_64-unknown-freebsd10-gcc \
     CXX_x86_64_unknown_freebsd=x86_64-unknown-freebsd10-g++ \
