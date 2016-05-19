@@ -12,6 +12,7 @@ env:
     - TARGET=arm-unknown-linux-gnueabi
     - TARGET=arm-unknown-linux-gnueabihf
     - TARGET=armv7-unknown-linux-gnueabihf
+    - TARGET=i686-pc-windows-gnu
     - TARGET=i686-unknown-linux-gnu
     - TARGET=mips-unknown-linux-gnu
     - TARGET=mipsel-unknown-linux-gnu
