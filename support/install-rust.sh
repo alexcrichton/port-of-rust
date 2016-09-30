@@ -3,4 +3,4 @@ curl https://static.rust-lang.org/rustup.sh | \
   --with-target=$1 \
   --yes \
   --disable-sudo \
-  --channel=nightly
+  --channel=stable
