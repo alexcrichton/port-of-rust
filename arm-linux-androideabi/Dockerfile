@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-RUN apt-get -y update && apt-get -y install curl gcc
+RUN apt-get -y update && apt-get -y install curl gcc file
 
 ENV PATH=$PATH:/android/ndk-arm/bin:/usr/local/cargo/bin \
     CARGO_HOME=/usr/local/cargo \
