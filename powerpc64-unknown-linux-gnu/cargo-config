@@ -2,4 +2,4 @@
 target = "powerpc64-unknown-linux-gnu"
 
 [target.powerpc64-unknown-linux-gnu]
-linker = "powerpc-linux-gnu-gcc"
+linker = "powerpc64-linux-gnu-gcc"

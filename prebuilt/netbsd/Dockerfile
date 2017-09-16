@@ -1,22 +1,21 @@
-FROM ubuntu:15.10
+FROM ubuntu:16.04
 
-RUN apt-get -y update
-RUN apt-get -y install curl file make wget bzip2 g++ xz-utils patch
+RUN apt-get update -y && apt-get install -y --no-install-recommends \
+  curl \
+  ca-certificates \
+  make \
+  wget \
+  bzip2 \
+  g++ \
+  xz-utils \
+  zlib1g-dev
 
-COPY support/build-binutils.sh /tmp/
-RUN bash /tmp/build-binutils.sh \
-    --target=x86_64-unknown-netbsd && \
-    rm -rf /tmp/build
+COPY build-netbsd-toolchain.sh /tmp/
+RUN /tmp/build-netbsd-toolchain.sh
 
-COPY support/build-netbsd-base.sh /tmp/
-RUN bash /tmp/build-netbsd-base.sh
-
-COPY support/build-gcc.sh /tmp/
-RUN PATCHES="http://ftp.netbsd.org/pub/pkgsrc/pkgsrc-2015Q4/pkgsrc/lang/gcc5/patches/patch-libstdc%2B%2B-v3_config_os_bsd_netbsd_ctype__base.h \
-             http://ftp.netbsd.org/pub/pkgsrc/pkgsrc-2015Q4/pkgsrc/lang/gcc5/patches/patch-libstdc%2B%2B-v3_config_os_bsd_netbsd_ctype__configure__char.cc" \
-    bash /tmp/build-gcc.sh \
-      --enable-languages=c,c++ \
-      --disable-libcilkrts \
-      --target=x86_64-unknown-netbsd && \
-    rm -rf /tmp/build
-
+FROM ubuntu:16.04
+COPY --from=0 /x-tools/ /x-tools
+ENV PATH=$PATH:/x-tools/x86_64-unknown-netbsd/bin \
+    AR_x86_64_unknown_netbsd=x86_64--netbsd-ar \
+    CC_x86_64_unknown_netbsd=x86_64--netbsd-gcc-sysroot \
+    CXX_x86_64_unknown_netbsd=x86_64--netbsd-g++-sysroot

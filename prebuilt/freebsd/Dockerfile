@@ -1,19 +1,20 @@
-FROM ubuntu:15.10
+FROM ubuntu:16.04
 
-RUN apt-get -y update
-RUN apt-get -y install curl file make wget bzip2 g++ xz-utils
+RUN apt-get update && apt-get install -y --no-install-recommends \
+  g++ \
+  make \
+  curl \
+  ca-certificates \
+  bzip2 \
+  xz-utils \
+  wget \
+  pkg-config
 
-COPY support/build-binutils.sh /tmp/
-RUN bash /tmp/build-binutils.sh \
-    --target=x86_64-unknown-freebsd10 && \
-    rm -rf /tmp/build
+COPY build-toolchain.sh /tmp/
+RUN /tmp/build-toolchain.sh
 
-COPY support/build-freebsd-base.sh /tmp/
-RUN bash /tmp/build-freebsd-base.sh
-
-COPY support/build-gcc.sh /tmp/
-RUN bash /tmp/build-gcc.sh \
-    --enable-languages=c,c++ \
-    --target=x86_64-unknown-freebsd10 && \
-    rm -rf /tmp/build
-
+FROM ubuntu:16.04
+COPY --from=0 /usr/local /usr/local
+ENV CC_x86_64_unknown_freebsd=x86_64-unknown-freebsd10-gcc \
+    CXX_x86_64_unknown_freebsd=x86_64-unknown-freebsd10-g++ \
+    AR_x86_64_unknown_freebsd=x86_64-unknown-freebsd10-ar \

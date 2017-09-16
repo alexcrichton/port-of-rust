@@ -1,9 +1,10 @@
-FROM ubuntu:15.10
+FROM ubuntu:16.04
 
-RUN apt-get -y update
-RUN apt-get -y install curl file gcc
+RUN apt-get -y update && apt-get -y install curl gcc
 
-ENV PATH=$PATH:/android/ndk-arm/bin
+ENV PATH=$PATH:/android/ndk-arm/bin:/usr/local/cargo/bin \
+    CARGO_HOME=/usr/local/cargo \
+    RUSTUP_HOME=/usr/local/rustup
 
 COPY support/android-install-ndk.sh /tmp/
 RUN sh /tmp/android-install-ndk.sh \

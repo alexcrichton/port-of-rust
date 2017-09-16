@@ -21,7 +21,7 @@ cat > testbin/build.rs <<-EOF
 extern crate gcc;
 
 fn main() {
-    gcc::Config::new().file("foo.c").compile("libfoo.a");
+    gcc::Build::new().file("foo.c").compile("libfoo.a");
 }
 EOF
 

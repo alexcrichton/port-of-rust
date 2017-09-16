@@ -1,6 +1,3 @@
-curl https://static.rust-lang.org/rustup.sh | \
-  sh -s -- \
-  --with-target=$1 \
-  --yes \
-  --disable-sudo \
-  --channel=nightly
+
+curl https://sh.rustup.rs | sh -s -- -y --default-toolchain=nightly
+rustup target add $1
