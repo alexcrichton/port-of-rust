@@ -1,0 +1,5 @@
+[build]
+target = "sparcv9-sun-solaris"
+
+[target.sparcv9-sun-solaris]
+linker = "sparcv9-sun-solaris2.11-gcc"

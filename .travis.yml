@@ -19,8 +19,10 @@ env:
     - TARGET=powerpc-unknown-linux-gnu
     - TARGET=powerpc64-unknown-linux-gnu
     - TARGET=powerpc64le-unknown-linux-gnu
+    - TARGET=sparcv9-sun-solaris
     - TARGET=x86_64-pc-windows-gnu
     - TARGET=x86_64-rumprun-netbsd
+    - TARGET=x86_64-sun-solaris
     - TARGET=x86_64-unknown-linux-gnu
     - TARGET=x86_64-unknown-linux-musl
     - TARGET=x86_64-unknown-freebsd
