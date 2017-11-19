@@ -2,4 +2,4 @@
 target = "x86_64-sun-solaris"
 
 [target.x86_64-sun-solaris]
-linker = "x86_64-sun-solaris2.11-gcc"
+linker = "x86_64-sun-solaris2.10-gcc"
