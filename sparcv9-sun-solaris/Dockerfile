@@ -1,4 +1,4 @@
-FROM bgermann/port-prebuilt-solaris
+FROM bgermann/port-prebuilt-solaris:2017-11-18
 
 RUN apt-get -y update && apt-get -y install curl gcc
 
